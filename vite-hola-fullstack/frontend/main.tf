@@ -71,47 +71,28 @@ variable "app_root" {
   default     = "frontend"
 }
 
-# Build spec en locals para evitar ternario con dos heredocs (el parser falla).
+# Build spec: formato simple con cd al subdirectorio frontend.
+# Evita el modo monorepo (appRoot) que causa el error 'Build path does not exist'.
 locals {
-  build_spec_monorepo = <<-EOT
-version: 1
-applications:
-  - appRoot: ${var.app_root}
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm ci
-        build:
-          commands:
-            - npm run build
-      artifacts:
-        baseDirectory: dist
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
-EOT
-  build_spec_simple = <<-EOT
+  build_spec = <<-EOT
 version: 1
 frontend:
   phases:
     preBuild:
       commands:
+        - cd ${var.app_root}
         - npm ci
     build:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: dist
+    baseDirectory: ${var.app_root}/dist
     files:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - ${var.app_root}/node_modules/**/*
 EOT
-  build_spec = var.app_root != "" ? local.build_spec_monorepo : local.build_spec_simple
 }
 
 resource "aws_amplify_app" "hola_fullstack" {
