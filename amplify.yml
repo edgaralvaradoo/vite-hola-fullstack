@@ -1,0 +1,17 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - cd vite-hola-fullstack/frontend
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: vite-hola-fullstack/frontend/dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - vite-hola-fullstack/frontend/node_modules/**/*
