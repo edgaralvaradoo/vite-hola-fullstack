@@ -1,92 +1,432 @@
+/* ============================================================
+   GLOBAL RESET & TOKENS
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5;
-  color-scheme: dark;
-  color: #ffffff; /* Texto blanco para que se vea bien */
-  background-color: #1a1a1a; /* Fondo oscuro elegante */
+  --bg:        #0f1117;
+  --surface:   #1a1d2e;
+  --surface2:  #232638;
+  --border:    rgba(255,255,255,0.08);
+  --accent:    #6c63ff;
+  --accent2:   #a78bfa;
+  --success:   #22c55e;
+  --danger:    #f43f5e;
+  --text:      #e2e8f0;
+  --muted:     #64748b;
+  --radius:    14px;
+  --shadow:    0 8px 32px rgba(0,0,0,0.4);
 }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  padding-top: 50px;      /* Espacio arriba */
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 60px;
 }
 
-.container {
+/* ============================================================
+   HEADER
+   ============================================================ */
+.app-wrapper {
   width: 100%;
-  max-width: 500px;
-  padding: 20px;
+  max-width: 560px;
+}
+
+.app-header {
   text-align: center;
+  padding: 48px 0 32px;
 }
 
-h1 {
-  font-size: 2.5em;
-  color: #646cff; /* Título en color violeta/azul */
+.header-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(108,99,255,0.4);
 }
 
-/* Estilos para el formulario de entrada */
-.form {
+.app-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.app-subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+  font-weight: 400;
+}
+
+/* ============================================================
+   MAIN PANEL
+   ============================================================ */
+.app-main {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============================================================
+   USER BAR
+   ============================================================ */
+.user-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-signout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-signout:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(244,63,94,0.08);
+}
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent2);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+}
+
+/* ============================================================
+   ADD TASK
+   ============================================================ */
+.add-task-card {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
-input {
-  flex-grow: 1;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #2a2a2a;
-  color: white;
+.task-input {
+  flex: 1;
+  padding: 13px 16px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  background-color: #646cff;
+.task-input::placeholder { color: var(--muted); }
+
+.task-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+}
+
+.task-input:disabled { opacity: 0.5; }
+
+.btn-add {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
   cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: #535bf2;
-}
-
-/* --- LA LISTA DE TAREAS --- */
-ul {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-}
-
-li {
-  background: #333;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 8px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-left: 5px solid #646cff; /* Detalle visual azul */
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(108,99,255,0.35);
 }
 
-.delete-btn {
-  background-color: #ff4d4d;
-  padding: 5px 10px;
-  font-size: 0.8em;
+.btn-add:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(108,99,255,0.5);
 }
 
-.delete-btn:hover {
-  background-color: #e60000;
+.btn-add:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
 }
 
-.signout-btn {
-  margin-top: 30px;
-  background-color: transparent;
-  border: 1px solid #ff4d4d;
-  color: #ff4d4d;
+/* ============================================================
+   ERROR BANNER
+   ============================================================ */
+.error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(244,63,94,0.12);
+  border: 1px solid rgba(244,63,94,0.3);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #fda4af;
+  gap: 10px;
+}
+
+.error-banner button {
+  background: none;
+  border: none;
+  color: #fda4af;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ============================================================
+   TASK LIST
+   ============================================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.task-card:hover {
+  border-color: rgba(108,99,255,0.25);
+  transform: translateX(2px);
+}
+
+.task-card.done {
+  opacity: 0.6;
+  border-color: rgba(34,197,94,0.2);
+  background: rgba(34,197,94,0.04);
+}
+
+.task-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--muted);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: white;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+  padding: 0;
+}
+
+.task-card.done .task-check {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.task-check:hover {
+  border-color: var(--success);
+}
+
+.task-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--text);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.task-card.done .task-text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.btn-delete {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: color 0.2s, background 0.2s;
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+  background: rgba(244,63,94,0.1);
+}
+
+/* ============================================================
+   EMPTY STATE & SPINNER
+   ============================================================ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.empty-icon { font-size: 2.5rem; }
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+   ALL DONE BANNER
+   ============================================================ */
+.all-done {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--success);
+  padding: 12px;
+  border-radius: var(--radius);
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+}
+
+/* ============================================================
+   AMPLIFY AUTHENTICATOR OVERRIDES
+   ============================================================ */
+[data-amplify-authenticator] {
+  --amplify-colors-brand-primary-10:  rgba(108,99,255,0.1);
+  --amplify-colors-brand-primary-80:  #6c63ff;
+  --amplify-colors-brand-primary-90:  #5a52e0;
+  --amplify-colors-brand-primary-100: #4a42cc;
+  --amplify-colors-background-primary: var(--surface);
+  --amplify-colors-background-secondary: var(--surface2);
+  --amplify-colors-border-primary: var(--border);
+  --amplify-colors-font-primary: var(--text);
+  --amplify-colors-font-secondary: var(--muted);
+  --amplify-radii-medium: 12px;
+  --amplify-components-authenticator-container-width-max: 100%;
+}
+
+[data-amplify-authenticator] [data-amplify-form] {
+  padding: 24px;
+  background: var(--surface);
+  border-radius: 20px;
+  border: 1px solid var(--border);
 }
