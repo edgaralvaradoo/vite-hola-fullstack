@@ -102,7 +102,7 @@
 				"cognito-idp:UpdateUserPoolClient",
 				"cognito-idp:DeleteUserPoolClient"
 			],
-			"Resource": "arn:aws:cognito-idp:us-east-1:188612032118:userpool/*"
+			"Resource": "arn:aws:cognito-idp:us-east-1:281502313604:userpool/*"
 		},
 		{
 			"Sid": "Amplify",

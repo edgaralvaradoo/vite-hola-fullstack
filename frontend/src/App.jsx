@@ -55,8 +55,14 @@ function App() {
 
       {/* ── Header ── */}
       <header className="app-header">
-        <h1>Gestor de Tareas</h1>
-        <p>Fullstack · DynamoDB · Lambda · Cognito</p>
+        <h1>Gestor de <span>Tareas</span></h1>
+        <p>Aplicación fullstack con servicios AWS</p>
+        <div className="header-badges">
+          <span className="badge">DynamoDB</span>
+          <span className="badge">Lambda</span>
+          <span className="badge">API Gateway</span>
+          <span className="badge">Cognito</span>
+        </div>
       </header>
 
       {/* ── Vista Pública ── */}
