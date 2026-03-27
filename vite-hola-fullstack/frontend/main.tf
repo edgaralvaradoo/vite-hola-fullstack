@@ -103,8 +103,7 @@ resource "aws_amplify_app" "hola_fullstack" {
   environment_variables = {
     VITE_API_URL              = var.api_url
     VITE_COGNITO_USER_POOL_ID = var.cognito_user_pool_id
-    VITE_COGNITO_CLIENT_ID     = var.cognito_client_id
-    AMPLIFY_MONOREPO_APP_ROOT  = var.app_root
+    VITE_COGNITO_CLIENT_ID    = var.cognito_client_id
   }
 
   build_spec = local.build_spec
